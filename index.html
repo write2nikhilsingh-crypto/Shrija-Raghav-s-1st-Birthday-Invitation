@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shrija & Raghav's 1st Birthday</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pastel: {
+                            pink: '#ffd1dc',
+                            mint: '#bdfcc9',
+                            yellow: '#fffacd'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles */
+        body { font-family: 'Inter', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .lang-hi { font-family: sans-serif; } /* Fallback for Hindi */
+    </style>
+</head>
+<body class="min-h-screen selection:bg-pastel-pink selection:text-stone-900 font-sans">
+    <!-- Language Toggle -->
+    <div class="fixed top-6 right-6 z-50">
+        <button id="langToggle" class="bg-white/80 backdrop-blur-md border border-pastel-pink/50 shadow-lg px-4 py-2 rounded-full flex items-center gap-2 group hover:scale-105 transition-transform">
+            <div class="relative w-8 h-8 flex items-center justify-center bg-pastel-mint rounded-full group-hover:bg-pastel-pink transition-colors">
+                <i data-lucide="languages" class="w-4 h-4 text-stone-700"></i>
+            </div>
+            <span id="langText" class="font-semibold text-stone-700 min-w-[2rem]">EN</span>
+        </button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[90vh] flex flex-col items-center justify-center px-6 pt-20 pb-12 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-pastel-mint/30 via-pastel-pink/20 to-transparent -z-10"></div>
+        
+        <div class="text-center max-w-4xl mx-auto">
+            <div class="relative mb-12 transform transition-all duration-1000">
+                <div class="absolute -inset-4 bg-gradient-to-tr from-pastel-pink via-pastel-yellow to-pastel-mint rounded-[2rem] blur-2xl opacity-30 animate-pulse"></div>
+                <div class="relative aspect-[3/4] md:aspect-video max-w-2xl mx-auto rounded-3xl overflow-hidden shadow-2xl border-8 border-white bg-stone-100">
+                    <img src="https://drive.google.com/thumbnail?id=16Pn7bsV3K7qarYpo0WV08k3kg1Eqi5ya&sz=w1000" alt="Shrija & Raghav" class="w-full h-full object-cover" referrerpolicy="no-referrer">
+                </div>
+            </div>
+
+            <div id="heroContent" class="transition-opacity duration-500">
+                <h1 id="heroHeadline" class="font-serif text-4xl md:text-7xl mb-4 text-stone-800 leading-tight">Double the Joy!</h1>
+                <p id="heroSubheadline" class="text-xl md:text-3xl text-stone-600 font-medium italic">Shrija & Raghav are turning ONE!</p>
+            </div>
+        </div>
+
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <div class="w-6 h-10 rounded-full border-2 border-stone-300 flex justify-center p-1">
+                <div class="w-1.5 h-1.5 rounded-full bg-stone-400"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Invitation Message -->
+    <section class="py-24 px-6 bg-white">
+        <div class="max-w-3xl mx-auto">
+            <div class="relative p-12 md:p-20 rounded-[3rem] border-2 border-pastel-pink/30 bg-pastel-pink/5">
+                <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-white px-6">
+                    <i data-lucide="heart" class="w-12 h-12 text-pastel-pink fill-pastel-pink/20"></i>
+                </div>
+                
+                <p id="invitationMessage" class="text-xl md:text-2xl text-center leading-relaxed text-stone-700 italic font-serif transition-opacity duration-500">
+                    With hearts full of love, Tripti and Pawan cordially invite you to celebrate the first birthday of our precious little ones. Please join us for an afternoon of fun, food, and blessings!
+                </p>
+
+                <div class="mt-12 flex justify-center gap-4">
+                    <div class="w-2 h-2 rounded-full bg-pastel-mint"></div>
+                    <div class="w-2 h-2 rounded-full bg-pastel-pink"></div>
+                    <div class="w-2 h-2 rounded-full bg-pastel-yellow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Details -->
+    <section class="py-24 px-6 bg-stone-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-stone-100 hover:shadow-md transition-shadow group">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform bg-pastel-mint">
+                        <i data-lucide="calendar" class="w-7 h-7 text-stone-700"></i>
+                    </div>
+                    <h3 id="dateLabel" class="text-sm uppercase tracking-widest text-stone-400 font-bold mb-2">Date</h3>
+                    <p id="dateValue" class="text-xl font-semibold text-stone-800 leading-snug">April 06, 2026</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-stone-100 hover:shadow-md transition-shadow group">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform bg-pastel-yellow">
+                        <i data-lucide="clock" class="w-7 h-7 text-stone-700"></i>
+                    </div>
+                    <h3 id="timeLabel" class="text-sm uppercase tracking-widest text-stone-400 font-bold mb-2">Time</h3>
+                    <p id="timeValue" class="text-xl font-semibold text-stone-800 leading-snug">12:00 PM - 3:00 PM</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-stone-100 hover:shadow-md transition-shadow group">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform bg-pastel-pink">
+                        <i data-lucide="map-pin" class="w-7 h-7 text-stone-700"></i>
+                    </div>
+                    <h3 id="venueLabel" class="text-sm uppercase tracking-widest text-stone-400 font-bold mb-2">Venue</h3>
+                    <p id="venueValue" class="text-xl font-semibold text-stone-800 leading-snug">Jai Shree Farms, Natraj Chowk, Rishikesh</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section class="py-24 px-6 bg-white overflow-hidden">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center justify-between mb-12 gap-4">
+                <div>
+                    <h2 id="galleryTitle" class="font-serif text-3xl md:text-5xl text-stone-800">Memories from Year One</h2>
+                    <p class="text-stone-500 mt-2 italic">A year of firsts, smiles, and double the love</p>
+                </div>
+                <i data-lucide="camera" class="w-8 h-8 text-pastel-pink"></i>
+            </div>
+
+            <div class="relative group max-w-4xl mx-auto">
+                <div class="relative aspect-[4/5] md:aspect-video rounded-[2rem] overflow-hidden shadow-2xl border-8 border-white bg-white">
+                    <img id="galleryImage" src="" alt="Gallery Image" class="w-full h-full object-contain transition-opacity duration-300" referrerpolicy="no-referrer">
+                </div>
+
+                <!-- Navigation Arrows -->
+                <button id="prevBtn" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/80 backdrop-blur-md border border-stone-100 flex items-center justify-center shadow-lg hover:bg-white transition-colors z-10" aria-label="Previous image">
+                    <i data-lucide="chevron-left" class="w-6 h-6 text-stone-800"></i>
+                </button>
+                <button id="nextBtn" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/80 backdrop-blur-md border border-stone-100 flex items-center justify-center shadow-lg hover:bg-white transition-colors z-10" aria-label="Next image">
+                    <i data-lucide="chevron-right" class="w-6 h-6 text-stone-800"></i>
+                </button>
+
+                <!-- Dots -->
+                <div id="galleryDots" class="flex justify-center gap-2 mt-8 flex-wrap max-w-full px-4">
+                    <!-- Dots will be injected here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-24 px-6 bg-stone-50">
+        <div class="max-w-5xl mx-auto">
+            <div class="rounded-[3rem] overflow-hidden shadow-xl border-8 border-white bg-white">
+                <div class="aspect-video w-full">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3448.0123456789!2d78.29123456789!3d30.12345678901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3909163690000001%3A0x0!2zSmFpIFNocmVlIEZhcm1zLCBSaXNoaWtlc2g!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin" width="100%" height="100%" style="border: 0" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="p-8 flex flex-col items-center">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Jai+Shree+Farms+Natraj+Chowk+Rishikesh" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-stone-900 text-white px-10 py-5 rounded-2xl font-bold shadow-lg shadow-stone-200 hover:bg-stone-800 transition-colors hover:scale-105 transform duration-200">
+                        <i data-lucide="navigation" class="w-5 h-5"></i>
+                        <span id="mapDirections">Get Directions</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section class="py-24 px-6 bg-white">
+        <div class="max-w-xl mx-auto">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-pastel-yellow mb-6">
+                    <i data-lucide="users" class="w-8 h-8 text-stone-700"></i>
+                </div>
+                <h2 id="rsvpTitle" class="font-serif text-4xl text-stone-800 mb-4">RSVP</h2>
+            </div>
+
+            <div class="flex justify-center">
+                <a href="https://wa.me/919557275764?text=Hi%20Pawan%20and%20Tripti!%20We%20are%20so%20excited%20to%20celebrate%20Shrija%20and%20Raghav's%201st%20birthday!%20%F0%9F%8E%89%0AName:%20_______%0ATotal%20Guests:%20_______" target="_blank" rel="noopener noreferrer" class="group relative inline-flex items-center gap-4 bg-[#25D366] text-white px-12 py-6 rounded-[2rem] font-bold text-xl shadow-2xl shadow-green-200 hover:bg-[#20ba5a] transition-all duration-300 hover:scale-105 hover:-translate-y-1">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-green-400 to-emerald-500 rounded-[2rem] blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                    <span class="relative flex items-center gap-3">
+                        <svg viewBox="0 0 24 24" class="w-8 h-8 fill-current" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                        </svg>
+                        <span id="rsvpWhatsapp">RSVP via WhatsApp</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 text-center bg-stone-50 border-t border-stone-100">
+        <p class="text-stone-400 text-sm tracking-widest uppercase font-bold">
+            Made with Love for Shrija & Raghav
+        </p>
+        <div class="mt-4 flex justify-center gap-2">
+            <i data-lucide="baby" class="w-5 h-5 text-pastel-pink"></i>
+            <i data-lucide="baby" class="w-5 h-5 text-pastel-mint"></i>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Translations
+        const translations = {
+            EN: {
+                hero: { headline: "Double the Joy!", subheadline: "Shrija & Raghav are turning ONE!" },
+                invitation: { message: "With hearts full of love, Tripti and Pawan cordially invite you to celebrate the first birthday of our precious little ones. Please join us for an afternoon of fun, food, and blessings!" },
+                details: { date: "April 06, 2026", time: "12:00 PM - 3:00 PM", venue: "Jai Shree Farms, Natraj Chowk, Rishikesh", dateLabel: "Date", timeLabel: "Time", venueLabel: "Venue" },
+                gallery: { title: "Memories from Year One" },
+                map: { directions: "Get Directions" },
+                rsvp: { title: "RSVP", whatsapp: "RSVP via WhatsApp" }
+            },
+            HI: {
+                hero: { headline: "दोहरी खुशियाँ!", subheadline: "श्रीजा और राघव एक साल के हो रहे हैं!" },
+                invitation: { message: "प्रेम भरे हृदय के साथ, तृप्ति और पवन आपको अपने अनमोल नन्हे-मुन्नों के पहले जन्मदिन के जश्न में सप्रेम आमंत्रित करते हैं। कृपया आएं और दोपहर के भोजन, मस्ती और आशीर्वाद के इस पल में शामिल हों!" },
+                details: { date: "06 अप्रैल 2026", time: "दोपहर 12:00 बजे से 3:00 बजे तक", venue: "जय श्री फार्म्स, नटराज चौक, ऋषिकेश", dateLabel: "तारीख", timeLabel: "समय", venueLabel: "स्थान" },
+                gallery: { title: "पहले साल की मीठी यादें" },
+                map: { directions: "रास्ता देखें" },
+                rsvp: { title: "आरएसवीपी", whatsapp: "व्हाट्सएप के माध्यम से जवाब दें" }
+            }
+        };
+
+        // State
+        let currentLang = 'EN';
+        let currentImageIndex = 0;
+
+        const galleryImages = [
+            "https://drive.google.com/thumbnail?id=1jSbAmpWwILuGNVefWBENx9ENS08d6nFz&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1-8NNsb_aChnzw82rb-22wQsVxArD0qCo&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1-EvCwFubTqKeQMx1UtA3dXAeVK4T_J4Y&sz=w1000",
+            "https://drive.google.com/thumbnail?id=11zyA2a3aCxqSIy5cyltwR-rFpO7Bra2F&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1RSQCTjEqE-R61zoGPcGbYmygXpVfnhyw&sz=w1000",
+            "https://drive.google.com/thumbnail?id=19BWVYvIlAfSCG8GyqYln0HIIYj30KL-0&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1GMZ60Gki7LGquilOSbhaSnGvGw0yayeM&sz=w1000",
+            "https://drive.google.com/thumbnail?id=14UG2v08DS99_QTRW1RfHdepyK9alFKdP&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1FE08gI5LV4zDYubCIh3feWpsjGrES1zE&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1LKq0rQ00-CLc1x_7KMGjuQqFOfet-iUM&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1twPAXOF6HAOCJAdZZX3vSb4pQiQWK_w8&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1PuGJbLnNn_wmiITNLG6mHTyWOWuodlV0&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1zfb1Mfj8O9XcaCiS7UaxKDeDk_ReSIc_&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1KCJqL_E5cUQORi_aGY1loeBfiQ5Dof0x&sz=w1000",
+            "https://drive.google.com/thumbnail?id=10-Vs662qleEetUqQdgmCknG9BmsR24U3&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1rbrLZ-uOraP409xj6LztBrBwAg1HlSLh&sz=w1000",
+        ];
+
+        // Elements
+        const langToggle = document.getElementById('langToggle');
+        const langText = document.getElementById('langText');
+        const body = document.body;
+        const galleryImageEl = document.getElementById('galleryImage');
+        const galleryDotsContainer = document.getElementById('galleryDots');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        // Functions
+        function updateContent() {
+            const content = translations[currentLang];
+            
+            // Fade out
+            const elementsToFade = ['heroContent', 'invitationMessage'];
+            elementsToFade.forEach(id => document.getElementById(id).style.opacity = '0');
+
+            setTimeout(() => {
+                document.getElementById('heroHeadline').textContent = content.hero.headline;
+                document.getElementById('heroSubheadline').textContent = content.hero.subheadline;
+                document.getElementById('invitationMessage').textContent = content.invitation.message;
+                document.getElementById('dateLabel').textContent = content.details.dateLabel;
+                document.getElementById('dateValue').textContent = content.details.date;
+                document.getElementById('timeLabel').textContent = content.details.timeLabel;
+                document.getElementById('timeValue').textContent = content.details.time;
+                document.getElementById('venueLabel').textContent = content.details.venueLabel;
+                document.getElementById('venueValue').textContent = content.details.venue;
+                document.getElementById('galleryTitle').textContent = content.gallery.title;
+                document.getElementById('mapDirections').textContent = content.map.directions;
+                document.getElementById('rsvpTitle').textContent = content.rsvp.title;
+                document.getElementById('rsvpWhatsapp').textContent = content.rsvp.whatsapp;
+
+                // Fade in
+                elementsToFade.forEach(id => document.getElementById(id).style.opacity = '1');
+            }, 300);
+
+            langText.textContent = currentLang;
+            if (currentLang === 'HI') {
+                body.classList.add('lang-hi');
+            } else {
+                body.classList.remove('lang-hi');
+            }
+        }
+
+        function renderGallery() {
+            galleryImageEl.style.opacity = '0';
+            setTimeout(() => {
+                galleryImageEl.src = galleryImages[currentImageIndex];
+                galleryImageEl.style.opacity = '1';
+            }, 150);
+
+            // Update dots
+            galleryDotsContainer.innerHTML = '';
+            galleryImages.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.className = `w-2 h-2 rounded-full transition-all duration-300 ${i === currentImageIndex ? 'bg-pastel-pink w-6' : 'bg-stone-200 hover:bg-stone-300'}`;
+                dot.onclick = () => {
+                    currentImageIndex = i;
+                    renderGallery();
+                };
+                galleryDotsContainer.appendChild(dot);
+            });
+        }
+
+        // Event Listeners
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'EN' ? 'HI' : 'EN';
+            updateContent();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            renderGallery();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            renderGallery();
+        });
+
+        // Confetti
+        function startConfetti() {
+            const duration = 15 * 1000;
+            const animationEnd = Date.now() + duration;
+            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            const interval = setInterval(function() {
+                const timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                const particleCount = 50 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+        }
+
+        // Initialize
+        updateContent();
+        renderGallery();
+        startConfetti();
+    </script>
+</body>
+</html>
